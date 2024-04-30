@@ -1,0 +1,125 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {
+      "firstName": "samya",
+      "lastName": "abokham",
+      "email": "samya@gmail.com",
+      "dob": "2024-06-10T21:00:00.000Z",
+      "gender": "female",
+      "education": "Graduate",
+      "company": "advance",
+      "experince": 5,
+      "id": "0eea"
+    },
+    {
+      "id": "eef6",
+      "firstName": "ff",
+      "lastName": "ff",
+      "email": "ff@gmail.com",
+      "dob": "2024-04-04T21:00:00.000Z",
+      "gender": "others",
+      "education": "Post Graduate",
+      "company": "ll",
+      "experince": 7
+    },
+    {
+      "id": "9062",
+      "firstName": "alaa",
+      "lastName": "sss",
+      "email": "laa@gmail.com",
+      "dob": "2024-04-03T21:00:00.000Z",
+      "gender": "female",
+      "education": "Post Graduate",
+      "company": "gaga",
+      "experince": 4
+    },
+    {
+      "id": "488a",
+      "firstName": "MOHAMMAD",
+      "lastName": "HARIRY",
+      "email": "nanooshs1999@gmail.com",
+      "dob": "2024-04-01T21:00:00.000Z",
+      "gender": "male",
+      "education": "Post Graduate",
+      "company": "AL-hariry",
+      "experince": 3
+    },
+    {
+      "id": "a364",
+      "firstName": "mohamed",
+      "lastName": "alsmman",
+      "email": "mohamed@gmail.com",
+      "dob": "2024-04-28T21:00:00.000Z",
+      "gender": "male",
+      "education": "Deploma",
+      "company": "m",
+      "experince": 9
+    },
+    {
+      "id": "7239",
+      "firstName": "k,0oo",
+      "lastName": "jnnn ",
+      "email": "nanooshs1999@gmail.com",
+      "dob": "2024-04-10T21:00:00.000Z",
+      "gender": "others",
+      "education": "Deploma",
+      "company": "AL-hariry",
+      "experince": 4
+    },
+    {
+      "id": "d2db",
+      "firstName": "ijjj",
+      "lastName": "knn ",
+      "email": "nanooshs1999@gmail.com",
+      "dob": "2024-04-16T21:00:00.000Z",
+      "gender": "others",
+      "education": "Intermediate",
+      "company": "AL-hariry",
+      "experince": 9
+    },
+    {
+      "id": "e32f",
+      "firstName": "ss",
+      "lastName": "ss",
+      "email": "nanooshs1999@gmail.com",
+      "dob": "2024-04-16T21:00:00.000Z",
+      "gender": "female",
+      "education": "Deploma",
+      "company": "AL-hariry",
+      "experince": 4
+    },
+    {
+      "id": "b439",
+      "userId": "1",
+      "title": "vhiojuihuyh",
+      "body": "fctfguhuiuiyuygytftrdreddr"
+    }
+  ]
+}
