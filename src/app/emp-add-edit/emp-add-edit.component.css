@@ -4,14 +4,41 @@
 .row{
     display: flex;
     gap: 10px;
+
 }
 
 mat-form-field{
     width: 100%;
+    color: blueviolet;
+     border-radius: 50px;
 }
+
 .action{
     padding: 0px 25px 20px ;
     button{
         flex: 1;
     }
+    
 }
+
+
+.custom-label {
+  color: purple; 
+
+}
+
+
+
+.button{
+  border-radius: 50px ;
+  color: blueviolet;
+}
+.buttons{
+   border-radius: 50px ;
+  color: rgb(254, 252, 255);
+}
+
+.demo-table {
+  width: 100%;
+}
+

@@ -16,11 +16,13 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
 import { MatIconModule } from '@angular/material/icon';
 import { CoreService } from '../core/core.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-emp-add-edit',
@@ -38,6 +40,7 @@ import { CoreService } from '../core/core.service';
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatTooltipModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './emp-add-edit.component.html',
@@ -58,22 +61,48 @@ export class EmpAddEditComponent implements OnInit {
     private empService: EmployeeService,
     private dialogRef: MatDialogRef<EmpAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private coreService:CoreService,
-    
+    private coreService: CoreService
   ) {
     this.empform = this.fb.group({
-      firstName: '',
-      lastName: '',
-      email: '',
-      dob: '',
-      gender: '',
-      education: '',
-      company: '',
-      experince: '',
+      firstName: ['', Validators.required],
+      // firstName:'',
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      dob: ['', Validators.required],
+      education: ['', Validators.required],
+      gender: ['', Validators.required],
+      company: ['', Validators.required],
+      experince: ['', [Validators.required, Validators.min(0)]],
       // package: '',
     });
   }
+  get firstName() {
+    return this.empform.get('firstName');
+  }
 
+  get lastName() {
+    return this.empform.get('lastName');
+  }
+
+  get email() {
+    return this.empform.get('email');
+  }
+
+  get dob() {
+    return this.empform.get('dob');
+  }
+
+  get gender() {
+    return this.empform.get('gender');
+  }
+
+  get company() {
+    return this.empform.get('company');
+  }
+
+  get experince() {
+    return this.empform.get('experince');
+  }
   ngOnInit(): void {
     this.empform.patchValue(this.data);
   }
@@ -82,20 +111,22 @@ export class EmpAddEditComponent implements OnInit {
     if (this.empform.valid) {
       if (this.data) {
         // console.log(this.empform.value)
-        this.empService.updateEmployee(this.data.id,this.empform.value).subscribe({
-          next: (val: any) => {
-             this.coreService.openSnackBar('Employee Update!');
-            this.dialogRef.close(true);
-          },
-          error: (err: any) => {
-            console.log(err);
-          },
-        });
+        this.empService
+          .updateEmployee(this.data.id, this.empform.value)
+          .subscribe({
+            next: (val: any) => {
+              this.coreService.openSnackBar('Employee Update!');
+              this.dialogRef.close(true);
+            },
+            error: (err: any) => {
+              console.log(err);
+            },
+          });
       } else {
         // console.log(this.empform.value)
         this.empService.addemployee(this.empform.value).subscribe({
           next: (val: any) => {
-           this.coreService.openSnackBar('Employee Added Sucessfuly');
+            this.coreService.openSnackBar('Employee Added Sucessfuly');
             this.dialogRef.close(true);
           },
           error: (err: any) => {

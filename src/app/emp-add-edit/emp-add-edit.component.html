@@ -1,38 +1,42 @@
-<div mat-dialog-title style="text-align: center;">
+
+<div mat-dialog-title style="text-align: center; color: blueviolet;">
   <h1>Employee Form</h1>
 </div>
 
 <Form [formGroup]="empform" (ngSubmit)="OnFormSubmit()">
   <div mat-dialog-content class="content">
     <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>FirstName</mat-label>
+      <mat-form-field appearance="fill"  >
+        <mat-label class="custom-label" >FirstName</mat-label>
         <input
           matInput
           type="text"
           placeholder="Ex. Noor"
           formControlName="firstName"
+          
         />
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>LastName</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label class="custom-label">LastName</mat-label>
         <input matInput placeholder="Ex. Alkhouli" formControlName="lastName" />
       </mat-form-field>
     </div>
     <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label class="custom-label">Email</mat-label>
         <input
           matInput
           placeholder="Ex. test@gmail.com"
           type="email"
           formControlName="email"
+          
         />
+        
       </mat-form-field>
     </div>
     <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>Date of birth</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label class="custom-label">Date of birth</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dob" />
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle
@@ -41,8 +45,8 @@
         ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Education</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label class="custom-label">Education</mat-label>
         <mat-select formControlName="education">
           <mat-option *ngFor="let val of education" [value]="val">{{
             val
@@ -53,19 +57,19 @@
 
     <div class="row">
       <mat-radio-group aria-label="Select an option" formControlName="gender">
-        <mat-label><b>Gender</b></mat-label>
-        <mat-radio-button value="male">Male </mat-radio-button>
+        <mat-label class="custom-label"><b>Gender</b></mat-label>
+        <mat-radio-button  value="male" >Male </mat-radio-button>
         <mat-radio-button value="female"> Female</mat-radio-button>
         <mat-radio-button value="others"> Others</mat-radio-button>
       </mat-radio-group>
     </div>
     <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>Company</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label class="custom-label">Company</mat-label>
         <input matInput placeholder="Ex. Advance" formControlName="company" />
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Experince</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label class="custom-label">Experince</mat-label>
         <input
           matInput
           placeholder="Ex. 4"
@@ -82,11 +86,11 @@
       </mat-form-field> -->
     <!-- </div> -->
   </div>
-  <div mat-dialog-actions class="action">
-    <button mat-raised-button type="button" [mat-dialog-close]="false">
+  <div mat-dialog-actions class="action" >
+    <button mat-raised-button type="button"  class="button" [mat-dialog-close]="false">
       Cancle
     </button>
-    <button mat-raised-button color="primary" type="submit">
+    <button mat-raised-button class="buttons" style="background-color: blueviolet;" type="submit">
       {{ data ? "update" : "save" }}
     </button>
   </div>

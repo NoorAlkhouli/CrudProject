@@ -20,6 +20,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoreService } from './core/core.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SelectionModel } from '@angular/cdk/collections';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 @Component({
   selector: 'app-root',
@@ -40,13 +46,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSortModule,
     MatSnackBarModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatExpansionModule,
   ],
+
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   displayedColumns: string[] = [
     // 'id',
+    'select',
     'firstname',
     'lastname',
     'email',
@@ -58,7 +69,11 @@ export class AppComponent implements OnInit {
     // 'package',
     'action',
   ];
-  dataSource!: MatTableDataSource<any>;
+
+  dataSource = new MatTableDataSource<any>();
+  selection = new SelectionModel<any>(true, []);
+  clickedRows = new Set<any>();
+  // dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -123,5 +138,75 @@ export class AppComponent implements OnInit {
         }
       },
     });
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+    return this.selection.selected.length === this.dataSource.data.length;
+  }
+
+  // masterToggle() {
+  //   this.isAllSelected()
+  //     ? this.selection.clear()
+  //     : this.dataSource.data.forEach((row) => this.selection.select(row));
+  // }
+
+  // masterToggle() {
+  //   if (this.isAllSelected()) {
+  //     this.selection.clear();
+  //   } else {
+  //     this.dataSource.data.forEach((row) => this.selection.select(row));
+  //   }
+  // }
+  // clearSelection() {
+  //   this.selection.clear();
+  // }
+  // clearAllData() {
+  //   this.dataSource.data = []; // Clear the data
+  //   this.clearSelection(); // Clear selections
+  // }
+
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.dataSource.data.forEach((row) => this.selection.select(row));
+    }
+  }
+
+  clearSelection() {
+    this.selection.clear();
+  }
+
+  clearAllData() {
+    this.dataSource.data = [];
+    this.clearSelection();
+  }
+  getEmployees() {
+    // Fetch employees from the server and update the dataSource
+    this.empService.getemployee().subscribe((employees) => {
+      this.dataSource.data = employees;
+    });
+  }
+
+  deleteSelectedEmployees() {
+    const selectedIds = this.selection.selected.map((emp) => emp.id);
+    selectedIds.forEach((id) => {
+      this.empService.deleteEmployee(id).subscribe({
+        next: (res) =>
+          this.coreService.openSnackBar(`Employee ${id} deleted!`, 'Done'),
+        error: (err) => console.error(`Error deleting employee ${id}:`, err),
+        complete: () => this.getEmployees(), // Refresh the list after all deletions are processed
+      });
+    });
+
+    this.selection.clear();
+  }
+
+  openEditSelectedEmployee() {
+    const selectedId = this.selection.selected[0].id; // Assuming only one row can be edited at a time
+    // Implement edit logic for selected row
   }
 }

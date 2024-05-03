@@ -8,5 +8,51 @@
   max-width: 1249px;
   mat-form-field{
 width: 100%;
+
   }
+
+}
+.buttons{
+ border-radius: 50px ;
+ margin: 10px;
+background-color:rgb(254, 252, 255)  ;
+ color: blueviolet;
+}
+
+
+table {
+  width: 100%;
+}
+.example-button-row button{
+  margin-right: 15px;
+  border-radius: 50px ;
+  color: blueviolet;
+
+}
+.mat-color-back{
+  background-color: blueviolet;
+}
+.mat-sort-header{
+   color: blueviolet;
+}
+
+td, th {
+  border-radius: 15%;
+  text-align: center;
+
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color:blueviolet;
+}
+
+.demo-row-is-clicked {
+  font-weight: normal;
+  color: purple;
+
+}
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
 }
