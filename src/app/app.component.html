@@ -38,27 +38,27 @@
 
 
 <div class="main-body">
-  <!-- <mat-form-field >
-    <mat-label style=" color: blueviolet;"  class="mat-row">filter
-    </mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Ex.Noor"
-      #input
-     
-    />
-  </mat-form-field> -->
-  <!-- class="mat-elevation-z18 demo-table" -->
 
   <mat-card
     style="
       border: 2px solid blueviolet;
       padding: 10px;
       border-radius: 50px 20px;
-    "
-  >
+          margin-top: -55px;" >
     <mat-card-content>
+
+        <mat-form-field  class="search-input">
+    <!-- <mat-label style=" color: blueviolet;"  class="mat-row">
+    </mat-label> -->
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Filter"
+      #input
+     
+    />
+  </mat-form-field> 
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="select">

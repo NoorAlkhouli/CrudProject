@@ -4,7 +4,6 @@
 
 .main-body{
   padding-bottom: 100%;
- 
   padding-left: 220px;
   margin: 50px;
   max-width: 1249px;
@@ -77,7 +76,7 @@ td, th {
 }
 
 .demo-row-is-clicked {
-  font-weight: normal;
+  font-weight:bold;
   color: purple;
 
 }
