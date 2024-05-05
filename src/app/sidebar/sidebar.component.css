@@ -1,0 +1,28 @@
+.containar{
+    background-color:blueviolet;
+    height: 200vh;
+    color: rgb(249, 248, 250);
+    display: flex;
+    align-items:baseline  ;
+    flex-direction: column;
+}
+
+.containar h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    margin-top: 20px;
+}
+.containar ul li{
+    list-style: none;
+    margin: 40px;
+
+    font-weight: 700px;
+    cursor: pointer;
+}
+.containar ul li:hover{
+  color: rgb(249, 249, 249);
+}
+
+    

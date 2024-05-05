@@ -24,8 +24,19 @@ import {MatCardModule} from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import {MatExpansionModule} from '@angular/material/expansion';
-
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { AdminComponent } from './admin/admin.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  faHome,
+  faUser,
+  faAdd,
+  faSignOut,
+  faDotCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -49,6 +60,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatCardModule,
     MatCheckboxModule,
     MatExpansionModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    SidebarComponent,
+    AdminComponent,
+    FontAwesomeModule,
   ],
 
   templateUrl: './app.component.html',
@@ -69,7 +86,10 @@ export class AppComponent implements OnInit {
     // 'package',
     'action',
   ];
-
+  faHome = faHome;
+  faUser = faUser;
+  faSignOut = faSignOut;
+  faAdd = faAdd;
   dataSource = new MatTableDataSource<any>();
   selection = new SelectionModel<any>(true, []);
   clickedRows = new Set<any>();
@@ -100,7 +120,16 @@ export class AppComponent implements OnInit {
       },
     });
   }
+  // getEmployees() {
+
+  //   this.empService.getemployee().subscribe((employees) => {
+  //     this.dataSource.data = employees;
+  //   });
+  // }
   getemployee() {
+    this.empService.getemployee().subscribe((employees) => {
+      this.dataSource.data = employees;
+    });
     this.empService.getemployee().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
@@ -110,6 +139,7 @@ export class AppComponent implements OnInit {
       error: console.log,
     });
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -184,12 +214,6 @@ export class AppComponent implements OnInit {
     this.dataSource.data = [];
     this.clearSelection();
   }
-  getEmployees() {
-    // Fetch employees from the server and update the dataSource
-    this.empService.getemployee().subscribe((employees) => {
-      this.dataSource.data = employees;
-    });
-  }
 
   deleteSelectedEmployees() {
     const selectedIds = this.selection.selected.map((emp) => emp.id);
@@ -198,7 +222,7 @@ export class AppComponent implements OnInit {
         next: (res) =>
           this.coreService.openSnackBar(`Employee ${id} deleted!`, 'Done'),
         error: (err) => console.error(`Error deleting employee ${id}:`, err),
-        complete: () => this.getEmployees(), // Refresh the list after all deletions are processed
+        complete: () => this.getemployee(), // Refresh the list after all deletions are processed
       });
     });
 

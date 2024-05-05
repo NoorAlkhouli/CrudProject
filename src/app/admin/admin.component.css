@@ -1,0 +1,8 @@
+.containar{
+    display: flex;
+}
+.sidebar{
+    flex: 4 5 12;
+    width: 250px;
+    height: 50px;
+}
